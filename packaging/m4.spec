@@ -6,6 +6,7 @@ Group:      Applications/Text
 License:    GPLv3+
 URL:        http://www.gnu.org/software/m4/
 Source0:    ftp://ftp.gnu.org/gnu/m4/m4-%{version}.tar.xz
+Source1001: packaging/m4.manifest 
 Patch0:     m4-1.4.14-include.patch
 
 
@@ -29,6 +30,7 @@ Install m4 if you need a macro processor.
 %patch0 -p1
 
 %build
+cp %{SOURCE1001} .
 
 %configure --disable-static
 make %{?jobs:-j%jobs}
@@ -41,6 +43,7 @@ rm -rf %{buildroot}
 %docs_package 
 
 %files
+%manifest m4.manifest
 %defattr(-,root,root,-)
 %doc COPYING
 %{_bindir}/m4
